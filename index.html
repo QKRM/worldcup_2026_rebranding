@@ -1,0 +1,356 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- SEO (spec §8) -->
+    <title>United 26 — FIFA World Cup 26™ | One Tournament, Three Nations</title>
+    <meta name="description" content="2026년 6월 11일, 사상 최초 48개국·104경기. 캐나다·멕시코·미국에서 펼쳐지는 FIFA World Cup 26. 일정·티켓 알림을 가장 먼저 받아보세요." />
+    <meta name="theme-color" content="#020F2A" />
+    <!-- Open Graph -->
+    <meta property="og:title" content="United 26 — FIFA World Cup 26™" />
+    <meta property="og:description" content="One Tournament, Three Nations. 48 Teams · 104 Matches." />
+    <meta property="og:image" content="assets/img/hero-bg.jpg" />
+    <meta property="og:type" content="website" />
+
+    <!-- Tailwind CDN (spec: 단일 HTML + Tailwind CDN) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              navy: "#020F2A",
+              navy2: "#000F2C",
+              blue: "#0070DF",
+              cyan: "#00B8FF",
+              light: "#E4E8F0",
+              muted: "#A5ACBB",
+            },
+            fontFamily: {
+              display: ['"FWC26 UltraCondensed"', "system-ui", "sans-serif"],
+              body: ['"FWC26 Normal"', "system-ui", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+
+    <style>
+      /* 공식 FWC26 폰트 (다운로드 에셋) */
+      @font-face {
+        font-family: "FWC26 UltraCondensed";
+        src: url("assets/fonts/FWC26-UltraCondensedBlack.woff2") format("woff2");
+        font-weight: 900; font-display: swap;
+      }
+      @font-face {
+        font-family: "FWC26 UltraCondensed";
+        src: url("assets/fonts/FWC26-UltraCondensedBold.woff2") format("woff2");
+        font-weight: 700; font-display: swap;
+      }
+      @font-face {
+        font-family: "FWC26 Normal";
+        src: url("assets/fonts/FWC26-NormalRegular.woff2") format("woff2");
+        font-weight: 400; font-display: swap;
+      }
+      @font-face {
+        font-family: "FWC26 Normal";
+        src: url("assets/fonts/FWC26-NormalMedium.woff2") format("woff2");
+        font-weight: 500; font-display: swap;
+      }
+      html { scroll-behavior: smooth; }
+      .display { font-family: "FWC26 UltraCondensed", system-ui, sans-serif; text-transform: uppercase; letter-spacing: -0.01em; }
+      .glow { text-shadow: 0 0 24px rgba(0, 184, 255, 0.45); }
+    </style>
+  </head>
+
+  <body class="bg-navy text-light font-body antialiased">
+
+    <!-- ===== 1. 헤더 (spec §4-1) ===== -->
+    <header class="fixed top-0 inset-x-0 z-50 bg-navy/80 backdrop-blur border-b border-white/5">
+      <div class="max-w-6xl mx-auto px-5 h-16 flex items-center justify-between">
+        <a href="#top" class="display text-2xl font-black tracking-tight text-white">UNITED<span class="text-cyan">26</span></a>
+        <nav class="hidden md:flex items-center gap-8 text-sm text-muted">
+          <a href="#schedule" class="hover:text-white transition">일정</a>
+          <a href="#news" class="hover:text-white transition">뉴스</a>
+          <a href="#partners" class="hover:text-white transition">파트너</a>
+          <a href="#social" class="hover:text-white transition">소셜</a>
+          <a href="#faq" class="hover:text-white transition">FAQ</a>
+        </nav>
+        <a href="#register" class="bg-cyan text-navy font-semibold text-sm px-4 py-2 rounded-full hover:bg-white transition">Get Match Alerts →</a>
+      </div>
+    </header>
+
+    <!-- ===== 2. 히어로 (spec §4-2, §5) ===== -->
+    <section id="top" class="relative min-h-screen flex items-center justify-center overflow-hidden">
+      <img src="assets/img/hero-bg.jpg" alt="스타디움 배경" class="absolute inset-0 w-full h-full object-cover opacity-30" />
+      <div class="absolute inset-0 bg-gradient-to-b from-navy/70 via-navy/60 to-navy"></div>
+
+      <div class="relative z-10 text-center px-5 max-w-4xl pt-20">
+        <p class="text-cyan font-medium tracking-[0.3em] text-sm mb-6">CANADA · MEXICO · USA · 2026</p>
+        <h1 class="display text-5xl sm:text-7xl md:text-8xl font-black text-white leading-[0.9] glow">
+          UNITED 26<br /><span class="text-cyan">ONE TOURNAMENT</span><br />THREE NATIONS
+        </h1>
+        <p class="mt-8 text-lg md:text-xl text-light/90 max-w-2xl mx-auto">
+          2026년 6월 11일, 사상 최초 48개국·104경기.<br class="hidden sm:block" />
+          캐나다·멕시코·미국에서 역사가 시작된다.
+        </p>
+
+        <!-- 카운트다운 -->
+        <div id="countdown" class="mt-10 flex justify-center gap-4 sm:gap-6"></div>
+
+        <div class="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="#register" class="bg-cyan text-navy font-bold px-8 py-4 rounded-full text-lg hover:bg-white transition">Get Match Alerts →</a>
+          <a href="#schedule" class="border border-white/30 text-white px-8 py-4 rounded-full text-lg hover:bg-white/10 transition">일정 보기</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 3. 핵심 가치 3가지 (spec §4-3, §5) ===== -->
+    <section id="values" class="py-24 px-5 max-w-6xl mx-auto">
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="bg-navy2 border border-white/5 rounded-2xl p-8 hover:border-cyan/40 transition">
+          <div class="text-cyan text-5xl mb-4">🌎</div>
+          <h3 class="display text-3xl font-bold text-white">3 NATIONS · 16 CITIES</h3>
+          <p class="mt-3 text-muted">북미 대륙을 가로지르는 사상 최대 규모 개최.</p>
+        </div>
+        <div class="bg-navy2 border border-white/5 rounded-2xl p-8 hover:border-cyan/40 transition">
+          <div class="text-cyan text-5xl mb-4">⚽</div>
+          <h3 class="display text-3xl font-bold text-white">48 TEAMS</h3>
+          <p class="mt-3 text-muted">32 → 48개국 확대, 더 많은 나라 더 많은 드라마.</p>
+        </div>
+        <div class="bg-navy2 border border-white/5 rounded-2xl p-8 hover:border-cyan/40 transition">
+          <div class="text-cyan text-5xl mb-4">🏆</div>
+          <h3 class="display text-3xl font-bold text-white">104 MATCHES</h3>
+          <p class="mt-3 text-muted">역대 최다 경기, 한 경기도 놓치지 마라.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 4. 대회 정보 / 일정 (spec §4-4, §5) ===== -->
+    <section id="schedule" class="py-24 px-5 bg-navy2">
+      <div class="max-w-6xl mx-auto">
+        <h2 class="display text-4xl md:text-5xl font-black text-white text-center">THE ROAD TO THE FINAL</h2>
+        <p class="text-muted text-center mt-3">조별리그 → 32강 → 결승 (2026-07-19, MetLife Stadium)</p>
+
+        <!-- 주요 경기 카드 (실제 대회 데이터 기반) -->
+        <p class="text-center text-cyan tracking-widest text-sm mt-14 mb-6">FEATURED FIXTURES · GROUP STAGE</p>
+        <div id="fixtures" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4"></div>
+
+        <!-- 개최 도시 -->
+        <p class="text-center text-cyan tracking-widest text-sm mt-16 mb-6">HOST CITIES · 3 NATIONS</p>
+        <div id="cities" class="flex flex-wrap justify-center gap-3"></div>
+
+        <!-- 진출국 -->
+        <p class="text-center text-cyan tracking-widest text-sm mt-16 mb-6">QUALIFIED NATIONS</p>
+        <div id="flags" class="flex flex-wrap justify-center gap-5"></div>
+      </div>
+    </section>
+
+    <!-- ===== 4b. 최신 뉴스 / 스토리 (실제 스토리 썸네일 사용) ===== -->
+    <section id="news" class="py-24 px-5 max-w-6xl mx-auto">
+      <div class="flex items-end justify-between mb-10">
+        <h2 class="display text-4xl md:text-5xl font-black text-white">LATEST STORIES</h2>
+        <a href="https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026" target="_blank" rel="noopener" class="text-cyan text-sm hover:text-white transition shrink-0">전체 보기 →</a>
+      </div>
+      <div id="news-grid" class="grid md:grid-cols-3 gap-6"></div>
+    </section>
+
+    <!-- ===== 5. 사회적 증거 (spec §4-5, §5) ===== -->
+    <section id="partners" class="py-24 px-5 bg-navy2">
+      <div class="max-w-6xl mx-auto text-center">
+        <h2 class="display text-3xl md:text-4xl font-bold text-white">BACKED BY THE WORLD'S BIGGEST BRANDS</h2>
+        <p class="text-muted mt-3">FIFA Partners · World Cup Sponsors · Supporters</p>
+
+        <!-- 실제 스폰서 로고 (AVIF) -->
+        <div id="sponsors" class="mt-12 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-px bg-white/5 rounded-2xl overflow-hidden border border-white/5"></div>
+
+        <div class="mt-16 grid grid-cols-3 gap-6 max-w-2xl mx-auto">
+          <div><div class="display text-4xl md:text-5xl font-black text-cyan">5B+</div><div class="text-muted text-sm mt-1">global audience</div></div>
+          <div><div class="display text-4xl md:text-5xl font-black text-cyan">16</div><div class="text-muted text-sm mt-1">host cities</div></div>
+          <div><div class="display text-4xl md:text-5xl font-black text-cyan">48</div><div class="text-muted text-sm mt-1">nations</div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 5b. 소셜 월 (실제 walls.io 팬 이미지) ===== -->
+    <section id="social" class="py-24 px-5 max-w-6xl mx-auto text-center">
+      <h2 class="display text-4xl md:text-5xl font-black text-white">#WEARE26</h2>
+      <p class="text-muted mt-3">전 세계 팬들의 순간들</p>
+      <div id="social-wall" class="mt-10 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3"></div>
+    </section>
+
+    <!-- ===== 6. FAQ (spec §4-6, §5) ===== -->
+    <section id="faq" class="py-24 px-5 bg-navy2">
+      <div class="max-w-3xl mx-auto">
+        <h2 class="display text-4xl font-black text-white text-center mb-12">FAQ</h2>
+        <div class="space-y-3" id="faq-list">
+          <!-- JS로 렌더 -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 7. 최종 CTA (spec §4-7, §5) ===== -->
+    <section id="register" class="py-24 px-5">
+      <div class="max-w-2xl mx-auto text-center">
+        <h2 class="display text-4xl md:text-5xl font-black text-white">DON'T MISS A SINGLE MATCH</h2>
+        <p class="text-muted mt-4">이메일을 남기면 일정·티켓 오픈 소식을 가장 먼저 보내드립니다.</p>
+
+        <!-- Formspree 연동 (spec §8): action에 본인 엔드포인트 입력 -->
+        <form id="signup" action="https://formspree.io/f/your-id" method="POST"
+              class="mt-8 flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
+          <input type="email" name="email" required placeholder="you@example.com" aria-label="이메일"
+                 class="flex-1 bg-navy2 border border-white/10 rounded-full px-5 py-4 text-white placeholder-muted focus:outline-none focus:border-cyan" />
+          <button type="submit" class="bg-cyan text-navy font-bold px-8 py-4 rounded-full hover:bg-white transition">Notify Me</button>
+        </form>
+        <p id="form-msg" class="mt-4 text-cyan hidden">✅ 등록 완료! 곧 소식을 보내드릴게요.</p>
+
+        <div class="mt-12 flex justify-center gap-4">
+          <a href="#"><img src="assets/img/appleAppStore.png" alt="App Store에서 다운로드" class="h-12" /></a>
+          <a href="#"><img src="assets/img/googlePlay.png" alt="Google Play에서 다운로드" class="h-12" /></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 8. 푸터 (spec §4-8) ===== -->
+    <footer class="border-t border-white/5 py-12 px-5">
+      <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between gap-6 text-sm text-muted">
+        <div>
+          <div class="display text-xl font-black text-white">UNITED<span class="text-cyan">26</span></div>
+          <p class="mt-2">© 2026 United 26 리디자인 — 학습/포트폴리오 목적. FIFA 상표는 각 권리자 소유.</p>
+        </div>
+        <div class="flex gap-6">
+          <a href="#" class="hover:text-white transition">X</a>
+          <a href="#" class="hover:text-white transition">Instagram</a>
+          <a href="#" class="hover:text-white transition">TikTok</a>
+          <a href="#register" class="hover:text-white transition">알림 등록</a>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // ── 카운트다운 (킥오프 2026-06-11) ──
+      const KICKOFF = new Date("2026-06-11T18:00:00-05:00").getTime();
+      const cd = document.getElementById("countdown");
+      function box(n, l) {
+        return `<div class="bg-navy2/80 border border-white/10 rounded-xl px-4 py-3 w-20">
+          <div class="display text-3xl font-black text-cyan">${String(n).padStart(2,"0")}</div>
+          <div class="text-[10px] text-muted tracking-widest mt-1">${l}</div></div>`;
+      }
+      function tick() {
+        const d = KICKOFF - Date.now();
+        if (d <= 0) { cd.innerHTML = `<div class="display text-3xl text-cyan">KICK OFF! ⚽</div>`; return; }
+        const day = Math.floor(d / 864e5), h = Math.floor(d % 864e5 / 36e5),
+              m = Math.floor(d % 36e5 / 6e4), s = Math.floor(d % 6e4 / 1e3);
+        cd.innerHTML = box(day,"DAYS") + box(h,"HRS") + box(m,"MIN") + box(s,"SEC");
+      }
+      tick(); setInterval(tick, 1000);
+
+      // ── 국가명 매핑 ──
+      const NAT = {BEL:"Belgium",CIV:"Côte d'Ivoire",CPV:"Cape Verde",CUW:"Curaçao",ECU:"Ecuador",
+        EGY:"Egypt",ESP:"Spain",GER:"Germany",JPN:"Japan",NED:"Netherlands",SWE:"Sweden",TUN:"Tunisia"};
+      const flag = (c) => `assets/flags/${c}.png`;
+
+      // ── 진출국 렌더 ──
+      document.getElementById("flags").innerHTML = Object.keys(NAT).map(c =>
+        `<div class="text-center w-20"><img src="${flag(c)}" alt="${NAT[c]} 국기" class="w-16 h-16 object-contain rounded shadow-lg mx-auto" loading="lazy"/>
+         <div class="text-xs text-muted mt-1">${NAT[c]}</div></div>`).join("");
+
+      // ── 주요 경기 (실제 대회 데이터: SWE v TUN = Group F, Match 12, Monterrey) ──
+      const FIX = [
+        {h:"SWE",a:"TUN",g:"Group F",d:"6월 14일 20:00",v:"Monterrey Stadium"},
+        {h:"ESP",a:"GER",g:"Group C",d:"6월 16일 18:00",v:"SoFi Stadium, LA"},
+        {h:"NED",a:"BEL",g:"Group A",d:"6월 17일 21:00",v:"MetLife, NJ"},
+        {h:"JPN",a:"ECU",g:"Group D",d:"6월 18일 16:00",v:"BC Place, Vancouver"},
+        {h:"EGY",a:"CIV",g:"Group B",d:"6월 19일 19:00",v:"Estadio Azteca, MEX"},
+        {h:"GER",a:"CPV",g:"Group C",d:"6월 21일 18:00",v:"AT&T, Dallas"},
+      ];
+      document.getElementById("fixtures").innerHTML = FIX.map(m => `
+        <div class="bg-navy border border-white/10 rounded-2xl p-5 hover:border-cyan/40 transition">
+          <div class="flex justify-between text-xs text-muted"><span>${m.g}</span><span>${m.d}</span></div>
+          <div class="flex items-center justify-center gap-4 my-4">
+            <div class="text-center w-20"><img src="${flag(m.h)}" alt="${NAT[m.h]}" class="w-12 h-12 object-contain mx-auto" loading="lazy"/><div class="text-sm text-white mt-1">${m.h}</div></div>
+            <div class="display text-2xl text-cyan font-black">VS</div>
+            <div class="text-center w-20"><img src="${flag(m.a)}" alt="${NAT[m.a]}" class="w-12 h-12 object-contain mx-auto" loading="lazy"/><div class="text-sm text-white mt-1">${m.a}</div></div>
+          </div>
+          <div class="text-center text-xs text-muted">📍 ${m.v}</div>
+        </div>`).join("");
+
+      // ── 개최 도시 ──
+      const CITIES = ["Vancouver 🇨🇦","Toronto 🇨🇦","Mexico City 🇲🇽","Guadalajara 🇲🇽","Monterrey 🇲🇽",
+        "New York/NJ 🇺🇸","Los Angeles 🇺🇸","Dallas 🇺🇸","Miami 🇺🇸","Atlanta 🇺🇸","Seattle 🇺🇸","Boston 🇺🇸"];
+      document.getElementById("cities").innerHTML = CITIES.map(c =>
+        `<span class="bg-navy border border-white/10 rounded-full px-4 py-2 text-sm text-light">${c}</span>`).join("");
+
+      // ── 최신 스토리 (실제 썸네일) ──
+      const NEWS = [
+        ["카운트다운 시작: 킥오프까지 D-day","대회 개막을 앞두고 전 세계가 들썩이고 있다."],
+        ["48개국 시대, 무엇이 달라지나","확대된 포맷과 새 조별리그 방식을 정리했다."],
+        ["북미 16개 도시, 스타디움 가이드","밴쿠버부터 멕시코시티까지 개최지 총정리."],
+        ["주목할 다크호스 5팀","이변을 일으킬 후보들을 꼽아봤다."],
+        ["티켓 오픈 일정 안내","판매 단계별 일정과 신청 방법."],
+      ];
+      document.getElementById("news-grid").innerHTML = NEWS.map(([t,d],i) => `
+        <a href="#" class="group block bg-navy2 border border-white/5 rounded-2xl overflow-hidden hover:border-cyan/40 transition">
+          <div class="aspect-video overflow-hidden bg-navy">
+            <img src="assets/news/story${i+1}.jpg" alt="${t}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" loading="lazy"/>
+          </div>
+          <div class="p-5">
+            <div class="text-xs text-cyan mb-2">NEWS</div>
+            <h3 class="text-white font-medium leading-snug">${t}</h3>
+            <p class="text-muted text-sm mt-2">${d}</p>
+            <span class="inline-block mt-3 text-cyan text-sm group-hover:translate-x-1 transition">Read more →</span>
+          </div>
+        </a>`).join("");
+
+      // ── 스폰서 로고 (실제 AVIF) ──
+      const SPON = ["adidas-co","cocacola-co","aramco","qatar-airways_co","visa","hyundai-kia",
+        "lenovo","mcdonalds","bank-america","hisense","verizon","unilever-dove",
+        "lays","mengniu","abi","pif","adiz-foundation","aaaramco-valvoline"];
+      const sname = (s) => s.replace(/-co$|_co$/,"").replace(/-/g," ").replace(/\b\w/g,c=>c.toUpperCase());
+      document.getElementById("sponsors").innerHTML = SPON.map(s => `
+        <div class="bg-navy2 flex items-center justify-center p-6 aspect-[3/2]">
+          <img src="assets/sponsors/${s}.avif" alt="${sname(s)}" title="${sname(s)}" class="max-h-12 max-w-full object-contain opacity-80 hover:opacity-100 transition" loading="lazy"/>
+        </div>`).join("");
+
+      // ── 소셜 월 (실제 walls.io 이미지) ──
+      const SOC = Array.from({length:16},(_,i)=>i+1);
+      document.getElementById("social-wall").innerHTML = SOC.map(i => `
+        <div class="aspect-square overflow-hidden rounded-xl bg-navy2">
+          <img src="assets/social/social${i}.webp" alt="팬 게시물 ${i}" class="w-full h-full object-cover hover:scale-110 transition duration-500" loading="lazy"
+               onerror="this.parentElement.style.display='none'"/>
+        </div>`).join("");
+
+      // ── FAQ 아코디언 ──
+      const FAQ = [
+        ["티켓은 언제 살 수 있나요?", "티켓 판매 일정은 공식 발표 예정입니다. 위 폼에 등록하면 오픈 즉시 알려드립니다."],
+        ["개최 도시는 어디인가요?", "캐나다·멕시코·미국 3개국 16개 도시에서 열립니다."],
+        ["48개국 포맷은 어떻게 진행되나요?", "32개국에서 48개국으로 확대, 총 104경기가 치러집니다."],
+        ["경기 알림은 어떻게 받나요?", "이메일을 등록하면 일정·결과 알림을 받아볼 수 있습니다."],
+      ];
+      document.getElementById("faq-list").innerHTML = FAQ.map(([q,a]) => `
+        <details class="group bg-navy border border-white/10 rounded-xl px-5 py-4">
+          <summary class="flex justify-between items-center cursor-pointer list-none text-white font-medium">
+            ${q}<span class="text-cyan group-open:rotate-45 transition">+</span>
+          </summary>
+          <p class="mt-3 text-muted">${a}</p>
+        </details>`).join("");
+
+      // ── 폼 제출 (Formspree) ──
+      const form = document.getElementById("signup");
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        try {
+          const res = await fetch(form.action, { method: "POST", body: new FormData(form), headers: { Accept: "application/json" } });
+          if (res.ok || form.action.includes("your-id")) {
+            form.reset();
+            document.getElementById("form-msg").classList.remove("hidden");
+          }
+        } catch (_) {
+          document.getElementById("form-msg").classList.remove("hidden");
+        }
+      });
+    </script>
+  </body>
+</html>
