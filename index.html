@@ -27,6 +27,12 @@
               cyan: "#00B8FF",
               light: "#E4E8F0",
               muted: "#A5ACBB",
+              // 호스트 3국 상징색
+              ca: "#D52B1E",   // 캐나다 레드
+              mx: "#006847",   // 멕시코 그린
+              mxRed: "#CE1126",
+              us: "#3C3B6E",   // USA 블루
+              usRed: "#B22234",
             },
             fontFamily: {
               display: ['"FWC26 UltraCondensed"', "system-ui", "sans-serif"],
@@ -62,6 +68,14 @@
       html { scroll-behavior: smooth; }
       .display { font-family: "FWC26 UltraCondensed", system-ui, sans-serif; text-transform: uppercase; letter-spacing: -0.01em; }
       .glow { text-shadow: 0 0 24px rgba(0, 184, 255, 0.45); }
+      /* 호스트 3국 트리컬러 그라데이션 (캐나다 레드 → 멕시코 그린 → USA 블루) */
+      .tricolor-bar {
+        background: linear-gradient(90deg, #D52B1E 0%, #D52B1E 33%, #006847 33%, #006847 66%, #3C3B6E 66%, #3C3B6E 100%);
+      }
+      .tricolor-text {
+        background: linear-gradient(90deg, #FF4438 0%, #00A65A 50%, #5B7CFF 100%);
+        -webkit-background-clip: text; background-clip: text; color: transparent;
+      }
     </style>
   </head>
 
@@ -80,6 +94,7 @@
         </nav>
         <a href="#register" class="bg-cyan text-navy font-semibold text-sm px-4 py-2 rounded-full hover:bg-white transition">Get Match Alerts →</a>
       </div>
+      <div class="tricolor-bar h-1 w-full"></div>
     </header>
 
     <!-- ===== 2. 히어로 (spec §4-2, §5) ===== -->
@@ -88,9 +103,16 @@
       <div class="absolute inset-0 bg-gradient-to-b from-navy/70 via-navy/60 to-navy"></div>
 
       <div class="relative z-10 text-center px-5 max-w-4xl pt-20">
-        <p class="text-cyan font-medium tracking-[0.3em] text-sm mb-6">CANADA · MEXICO · USA · 2026</p>
+        <p class="font-medium tracking-[0.3em] text-sm mb-6">
+          <span style="color:#FF4438">CANADA</span>
+          <span class="text-muted">·</span>
+          <span style="color:#00C46A">MEXICO</span>
+          <span class="text-muted">·</span>
+          <span style="color:#5B7CFF">USA</span>
+          <span class="text-muted">· 2026</span>
+        </p>
         <h1 class="display text-5xl sm:text-7xl md:text-8xl font-black text-white leading-[0.9] glow">
-          UNITED 26<br /><span class="text-cyan">ONE TOURNAMENT</span><br />THREE NATIONS
+          UNITED 26<br /><span class="text-cyan">ONE TOURNAMENT</span><br /><span class="tricolor-text">THREE NATIONS</span>
         </h1>
         <p class="mt-8 text-lg md:text-xl text-light/90 max-w-2xl mx-auto">
           2026년 6월 11일, 사상 최초 48개국·104경기.<br class="hidden sm:block" />
@@ -98,7 +120,8 @@
         </p>
 
         <!-- 카운트다운 -->
-        <div id="countdown" class="mt-10 flex justify-center gap-4 sm:gap-6"></div>
+        <p id="cd-label" class="mt-10 text-xs tracking-[0.3em] text-muted">킥오프까지</p>
+        <div id="countdown" class="mt-3 flex justify-center gap-4 sm:gap-6"></div>
 
         <div class="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
           <a href="#register" class="bg-cyan text-navy font-bold px-8 py-4 rounded-full text-lg hover:bg-white transition">Get Match Alerts →</a>
@@ -110,19 +133,19 @@
     <!-- ===== 3. 핵심 가치 3가지 (spec §4-3, §5) ===== -->
     <section id="values" class="py-24 px-5 max-w-6xl mx-auto">
       <div class="grid md:grid-cols-3 gap-6">
-        <div class="bg-navy2 border border-white/5 rounded-2xl p-8 hover:border-cyan/40 transition">
-          <div class="text-cyan text-5xl mb-4">🌎</div>
-          <h3 class="display text-3xl font-bold text-white">3 NATIONS · 16 CITIES</h3>
+        <div class="bg-navy2 border border-white/5 rounded-2xl p-8 transition hover:-translate-y-1" style="border-top:3px solid #D52B1E">
+          <div class="text-5xl mb-4">🇨🇦</div>
+          <h3 class="display text-3xl font-bold" style="color:#FF5347">3 NATIONS · 16 CITIES</h3>
           <p class="mt-3 text-muted">북미 대륙을 가로지르는 사상 최대 규모 개최.</p>
         </div>
-        <div class="bg-navy2 border border-white/5 rounded-2xl p-8 hover:border-cyan/40 transition">
-          <div class="text-cyan text-5xl mb-4">⚽</div>
-          <h3 class="display text-3xl font-bold text-white">48 TEAMS</h3>
+        <div class="bg-navy2 border border-white/5 rounded-2xl p-8 transition hover:-translate-y-1" style="border-top:3px solid #006847">
+          <div class="text-5xl mb-4">🇲🇽</div>
+          <h3 class="display text-3xl font-bold" style="color:#00C46A">48 TEAMS</h3>
           <p class="mt-3 text-muted">32 → 48개국 확대, 더 많은 나라 더 많은 드라마.</p>
         </div>
-        <div class="bg-navy2 border border-white/5 rounded-2xl p-8 hover:border-cyan/40 transition">
-          <div class="text-cyan text-5xl mb-4">🏆</div>
-          <h3 class="display text-3xl font-bold text-white">104 MATCHES</h3>
+        <div class="bg-navy2 border border-white/5 rounded-2xl p-8 transition hover:-translate-y-1" style="border-top:3px solid #3C3B6E">
+          <div class="text-5xl mb-4">🇺🇸</div>
+          <h3 class="display text-3xl font-bold" style="color:#7C97FF">104 MATCHES</h3>
           <p class="mt-3 text-muted">역대 최다 경기, 한 경기도 놓치지 마라.</p>
         </div>
       </div>
@@ -192,6 +215,7 @@
     </section>
 
     <!-- ===== 7. 최종 CTA (spec §4-7, §5) ===== -->
+    <div class="tricolor-bar h-1.5 w-full"></div>
     <section id="register" class="py-24 px-5">
       <div class="max-w-2xl mx-auto text-center">
         <h2 class="display text-4xl md:text-5xl font-black text-white">DON'T MISS A SINGLE MATCH</h2>
@@ -230,8 +254,10 @@
     </footer>
 
     <script>
-      // ── 카운트다운 (킥오프 2026-06-11) ──
+      // ── 카운트다운: 킥오프(6/11) 지나면 결승(7/19)로 폴백 ──
       const KICKOFF = new Date("2026-06-11T18:00:00-05:00").getTime();
+      const FINAL   = new Date("2026-07-19T15:00:00-04:00").getTime();
+      const cdLabel = document.getElementById("cd-label");
       const cd = document.getElementById("countdown");
       function box(n, l) {
         return `<div class="bg-navy2/80 border border-white/10 rounded-xl px-4 py-3 w-20">
@@ -239,8 +265,12 @@
           <div class="text-[10px] text-muted tracking-widest mt-1">${l}</div></div>`;
       }
       function tick() {
-        const d = KICKOFF - Date.now();
-        if (d <= 0) { cd.innerHTML = `<div class="display text-3xl text-cyan">KICK OFF! ⚽</div>`; return; }
+        const now = Date.now();
+        const toKick = KICKOFF - now;
+        const target = toKick > 0 ? KICKOFF : FINAL;
+        if (cdLabel) cdLabel.textContent = toKick > 0 ? "킥오프까지" : "결승까지";
+        let d = target - now;
+        if (d <= 0) { cd.innerHTML = `<div class="display text-3xl text-cyan glow">CHAMPIONS! 🏆</div>`; return; }
         const day = Math.floor(d / 864e5), h = Math.floor(d % 864e5 / 36e5),
               m = Math.floor(d % 36e5 / 6e4), s = Math.floor(d % 6e4 / 1e3);
         cd.innerHTML = box(day,"DAYS") + box(h,"HRS") + box(m,"MIN") + box(s,"SEC");
@@ -277,11 +307,14 @@
           <div class="text-center text-xs text-muted">📍 ${m.v}</div>
         </div>`).join("");
 
-      // ── 개최 도시 ──
-      const CITIES = ["Vancouver 🇨🇦","Toronto 🇨🇦","Mexico City 🇲🇽","Guadalajara 🇲🇽","Monterrey 🇲🇽",
-        "New York/NJ 🇺🇸","Los Angeles 🇺🇸","Dallas 🇺🇸","Miami 🇺🇸","Atlanta 🇺🇸","Seattle 🇺🇸","Boston 🇺🇸"];
-      document.getElementById("cities").innerHTML = CITIES.map(c =>
-        `<span class="bg-navy border border-white/10 rounded-full px-4 py-2 text-sm text-light">${c}</span>`).join("");
+      // ── 개최 도시 (국가별 상징색) ──
+      const CITIES = [
+        ["Vancouver","🇨🇦","#D52B1E"],["Toronto","🇨🇦","#D52B1E"],
+        ["Mexico City","🇲🇽","#006847"],["Guadalajara","🇲🇽","#006847"],["Monterrey","🇲🇽","#006847"],
+        ["New York/NJ","🇺🇸","#3C3B6E"],["Los Angeles","🇺🇸","#3C3B6E"],["Dallas","🇺🇸","#3C3B6E"],
+        ["Miami","🇺🇸","#3C3B6E"],["Atlanta","🇺🇸","#3C3B6E"],["Seattle","🇺🇸","#3C3B6E"],["Boston","🇺🇸","#3C3B6E"]];
+      document.getElementById("cities").innerHTML = CITIES.map(([c,f,col]) =>
+        `<span class="bg-navy rounded-full px-4 py-2 text-sm text-light border-l-4" style="border-left-color:${col};border-top:1px solid rgba(255,255,255,.08);border-right:1px solid rgba(255,255,255,.08);border-bottom:1px solid rgba(255,255,255,.08)">${f} ${c}</span>`).join("");
 
       // ── 최신 스토리 (실제 썸네일) ──
       const NEWS = [
